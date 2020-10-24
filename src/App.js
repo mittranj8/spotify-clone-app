@@ -1,10 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
+import Login from "./Login";
+import Player from "./Player";
+import { getTokenFromUrl } from "./spotify";
 
 function App() {
+  const [token, setToken] = useState(null);
+
+  // runs code based on a given condition
+  useEffect(() => {
+    const hash = getTokenFromUrl();
+
+    // removes visibility of token from the url
+    window.location.hash = ""; 
+
+    const _token = hash.access_token;
+
+     if(_token)
+      setToken(_token);
+    // console.log("Token:", token);
+  }, []);     // using `[]` will run the code inside only once when App loads
+
   return (
-    <div className="App">
-      <h1>Hello World</h1>
+    <div className="app">
+      {
+        token?(<Player />):(<Login />)
+      }
+      
     </div>
   );
 }
