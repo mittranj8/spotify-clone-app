@@ -1,4 +1,4 @@
-import React, { useContext, createContext, reducer, useReducer } from "react";
+import React, { useContext, createContext, useReducer } from "react";
 
 export const DataLayerContext = createContext();
 
