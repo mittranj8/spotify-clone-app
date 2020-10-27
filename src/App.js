@@ -3,6 +3,9 @@ import "./App.css";
 import Login from "./Login";
 import Player from "./Player";
 import { getTokenFromUrl } from "./spotify";
+import SpotifyWebApi from "spotify-web-api-js";
+
+const spotify = new SpotifyWebApi();
 
 function App() {
   const [token, setToken] = useState(null);
@@ -12,23 +15,21 @@ function App() {
     const hash = getTokenFromUrl();
 
     // removes visibility of token from the url
-    window.location.hash = ""; 
+    window.location.hash = "";
 
     const _token = hash.access_token;
 
-     if(_token)
-      setToken(_token);
+    if (_token) setToken(_token);
     // console.log("Token:", token);
-  }, []);     // using `[]` will run the code inside only once when App loads
 
-  return (
-    <div className="app">
-      {
-        token?(<Player />):(<Login />)
-      }
-      
-    </div>
-  );
+    spotify.setAccessToken(_token);
+
+    spotify.getMe().then((user) => {
+      console.log(user);
+    });
+  }, []); // using `[]` will run the code inside only once when App loads
+
+  return <div className="app">{token ? <Player /> : <Login />}</div>;
 }
 
 export default App;
