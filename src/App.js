@@ -38,10 +38,19 @@ function App() {
           user: user,
         });
       });
+
       spotify.getUserPlaylists().then((playlists) => {
         dispatch({
           type: "SET_PLAYLISTS",
           playlists: playlists,
+        });
+      });
+      // my token = 37i9dQZEVXcOLzhlL5I4Ar
+      // alt token = 37i9dQZEVXcIJazRV9ISoM
+      spotify.getPlaylist("37i9dQZEVXcIJazRV9ISoM").then((response) => {
+        dispatch({
+          type: "SET_DISCOVER_WEEKLY",
+          discover_weekly: response,
         });
       });
     }
