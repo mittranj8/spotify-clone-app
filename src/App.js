@@ -47,14 +47,14 @@ function App() {
       });
       // my token = 37i9dQZEVXcOLzhlL5I4Ar
       // alt token = 37i9dQZEVXcIJazRV9ISoM
-      spotify.getPlaylist("37i9dQZEVXcIJazRV9ISoM").then((response) => {
+      spotify.getPlaylist("37i9dQZEVXcOLzhlL5I4Ar").then((response) => {
         dispatch({
           type: "SET_DISCOVER_WEEKLY",
           discover_weekly: response,
         });
       });
     }
-  }, []); // using `[]` will run the code inside only once when App loads
+  }, [token, dispatch]); // using `[]` will run the code inside only once when App loads
 
   console.log("Username: ", user);
   console.log("Token: ", token);
