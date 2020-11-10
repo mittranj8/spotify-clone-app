@@ -10,6 +10,7 @@ import {
 } from "@material-ui/icons";
 import React from "react";
 import "./Footer.css";
+import PlayingCover from "./images/NowPlayingWolves.jpeg";
 
 function Footer() {
   return (
@@ -17,12 +18,12 @@ function Footer() {
       <div className="footer_left">
         <img
           className="footer_albumLogo"
-          src="https://community.spotify.com/t5/image/serverpage/image-id/70575i0FEE8730666D755C/image-size/large?v=1.0&px=-1"
+          src={PlayingCover}
           alt="Album Cover"
         />
         <div className="footer_songInfo">
-          <h4>Yeah</h4>
-          <p>Usher</p>
+          <h4>Wolves</h4>
+          <p>Selena Gomez, Marshmello</p>
         </div>
       </div>
 
